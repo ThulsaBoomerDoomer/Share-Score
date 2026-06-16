@@ -410,7 +410,7 @@
         const rawAwayName = document.getElementById('away-name').value;
     
     // Check if they haven't selected a team yet or left it on the default placeholder
-    const awayName = (rawAwayName && rawAwayName !== "OPPONENT") ? rawAwayName.toUpperCase() : "OPPONENT";
+    const awayName = (rawAwayName && rawAwayName !== "OPPONENT") ? rawAwayName : "OPPONENT";
         
         const homeTotal = (matchData.home.goals * 6) + matchData.home.behinds;
         const awayTotal = (matchData.away.goals * 6) + matchData.away.behinds;
