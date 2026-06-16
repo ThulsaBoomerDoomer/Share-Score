@@ -266,7 +266,6 @@
 
 <div class="app-container">
     <header>
-        <!-- PASTE YOUR LONG DATA:IMAGE STRING HERE INSTEAD OF THE TEXT BELOW -->
         <img src="Magpies Logo.png" alt="Busselton Magpies Football Club Logo">
         <h1>Magpies Score Tracker</h1>
     </header>
@@ -409,7 +408,9 @@
 
     function generatePreviewText() {
         const rawAwayName = document.getElementById('away-name').value;
-        const awayName = rawAwayName ? rawAwayName.toUpperCase() : "OPPONENT";
+    
+    // Check if they haven't selected a team yet or left it on the default placeholder
+    const awayName = (rawAwayName && rawAwayName !== "OPPONENT") ? rawAwayName.toUpperCase() : "OPPONENT";
         
         const homeTotal = (matchData.home.goals * 6) + matchData.home.behinds;
         const awayTotal = (matchData.away.goals * 6) + matchData.away.behinds;
