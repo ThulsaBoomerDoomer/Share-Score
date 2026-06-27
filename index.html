@@ -24,7 +24,7 @@
 
         body {
             background-color: #e0e0e0;
-            padding: 12px;
+            padding: 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -37,7 +37,7 @@
             background: var(--magpie-white);
             border: 3px solid var(--magpie-black);
             border-radius: 16px;
-            padding: 16px;
+            padding: 12px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
 
@@ -46,20 +46,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
+            gap: 4px;
+            margin-bottom: 10px;
             border-bottom: 3px double var(--magpie-black);
-            padding-bottom: 12px;
+            padding-bottom: 8px;
         }
 
         header img {
-            width: 75px;
+            width: 65px;
             height: auto;
             object-fit: contain;
         }
 
         header h1 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--magpie-black);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -81,16 +81,16 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 6px;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
         }
 
         .q-btn {
             background: var(--magpie-white);
             border: 2px solid var(--magpie-black);
-            padding: 8px 0;
+            padding: 6px 0;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             color: var(--magpie-black);
         }
@@ -104,24 +104,24 @@
         .team-block {
             border: 2px solid var(--magpie-black);
             border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 14px;
+            padding: 10px;
+            margin-bottom: 10px;
             background: var(--magpie-white);
         }
 
         .team-title-row {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .team-name {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 900;
             color: var(--magpie-black);
             text-transform: uppercase;
         }
 
         .opponent-input {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 900;
             color: var(--magpie-black);
             text-transform: uppercase;
@@ -155,12 +155,12 @@
             background: var(--magpie-white);
             border: 2px solid var(--magpie-black);
             border-radius: 6px;
-            padding: 6px 2px;
+            padding: 4px 2px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 74px;
+            height: 60px;
         }
 
         .score-box.total-box {
@@ -184,7 +184,7 @@
         }
 
         .score-count {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 900;
             color: var(--magpie-black);
             line-height: 1.1;
@@ -201,8 +201,8 @@
 
         .btn-calc {
             border: 2px solid var(--magpie-black);
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border-radius: 4px;
             font-size: 1.1rem;
             font-weight: bold;
@@ -224,21 +224,21 @@
 
         /* Output & Share Field Details */
         .output-section {
-            margin-top: 14px;
+            margin-top: 10px;
             border-top: 2px dashed var(--magpie-black);
-            padding-top: 14px;
+            padding-top: 10px;
         }
 
         .preview-box {
             background: var(--light-grey);
             border: 2px solid var(--magpie-black);
             border-radius: 8px;
-            padding: 10px;
+            padding: 8px;
             font-family: monospace;
             font-size: 0.85rem;
             white-space: pre-line;
             color: #000000;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             -webkit-user-select: text;
             user-select: text;
         }
@@ -247,7 +247,7 @@
             width: 100%;
             background: var(--magpie-black);
             color: var(--magpie-white);
-            padding: 12px;
+            padding: 10px;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -266,7 +266,7 @@
 
 <div class="app-container">
     <header>
-        <img src="Magpies Logo.png" alt="Busselton Magpies Football Club Logo">
+        <img src="PASTE_IMAGE_STRING_HERE" alt="Busselton Magpies Football Club Logo">
         <h1>Magpies Score Tracker</h1>
     </header>
 
@@ -285,27 +285,22 @@
             <div class="team-name">Busselton Magpies</div>
         </div>
         <div class="inline-score-row">
-            <!-- Goals Box -->
             <div class="score-box">
                 <span class="score-label">Goals</span>
                 <div class="score-count" id="home-goals">0</div>
             </div>
-            <!-- Dynamic Goals Adjuster -->
             <div class="control-buttons">
                 <button class="btn-calc btn-plus" onclick="updateScore('home', 'goals', 1)">+</button>
                 <button class="btn-calc btn-minus" onclick="updateScore('home', 'goals', -1)">-</button>
             </div>
-            <!-- Points Box -->
             <div class="score-box">
                 <span class="score-label">Points</span>
                 <div class="score-count" id="home-behinds">0</div>
             </div>
-            <!-- Dynamic Points Adjuster -->
             <div class="control-buttons">
                 <button class="btn-calc btn-plus" onclick="updateScore('home', 'behinds', 1)">+</button>
                 <button class="btn-calc btn-minus" onclick="updateScore('home', 'behinds', -1)">-</button>
             </div>
-            <!-- Total Box -->
             <div class="score-box total-box">
                 <span class="score-label">Total</span>
                 <div class="score-count" id="home-total">0</div>
@@ -318,39 +313,36 @@
         <div class="team-title-row">
             <select class="opponent-input" id="away-name" onchange="generatePreviewText()">
                 <option value="OPPONENT">-- SELECT OPPONENT --</option>
-                <option value="Bunbury">Bunbury</option>
-                <option value="Carey Park">Carey Park</option>
-                <option value="Collie">Collie</option>
-                <option value="Donnybrook">Donnybrook</option>
-                <option value="Eaton Boomers">Eaton Boomers</option>
+                <option value="Augusta">AUGUSTA</option>
+                <option value="Bunbury">BUNBURY</option>
+                <option value="Carey Park">CAREY PARK</option>
+                <option value="Collie Lions">COLLIE LIONS</option>
+                <option value="Donnybrook">DONNYBROOK</option>
+                <option value="Eaton Boomers">EATON BOOMERS</option>
                 <option value="HBL">HBL</option>
-                <option value="Harvey Bulls">Harvey Bulls</option>
-                <option value="Margaret River">Margaret River</option>
-                <option value="South Bunbury">South Bunbury</option>
+                <option value="Harvey Bulls">HARVEY BULLS</option>
+                <option value="Margaret River">MARGARET RIVER</option>
+                <option value="Peninsula Bombers">PENINSULA BOMBERS</option>
+                <option value="South Bunbury">SOUTH BUNBURY</option>
             </select>
         </div>
         <div class="inline-score-row">
-            <!-- Goals Box -->
             <div class="score-box">
                 <span class="score-label">Goals</span>
                 <div class="score-count" id="away-goals">0</div>
             </div>
-            <!-- Dynamic Goals Adjuster -->
             <div class="control-buttons">
                 <button class="btn-calc btn-plus" onclick="updateScore('away', 'goals', 1)">+</button>
                 <button class="btn-calc btn-minus" onclick="updateScore('away', 'goals', -1)">-</button>
             </div>
-            <!-- Points Box -->
             <div class="score-box">
                 <span class="score-label">Points</span>
                 <div class="score-count" id="away-behinds">0</div>
             </div>
-            <!-- Dynamic Points Adjuster -->
             <div class="control-buttons">
                 <button class="btn-calc btn-plus" onclick="updateScore('away', 'behinds', 1)">+</button>
                 <button class="btn-calc btn-minus" onclick="updateScore('away', 'behinds', -1)">-</button>
             </div>
-            <!-- Total Box -->
             <div class="score-box total-box">
                 <span class="score-label">Total</span>
                 <div class="score-count" id="away-total">0</div>
@@ -366,9 +358,9 @@
     </div>
 
     <!-- CLEAR SCORE TRIGGER -->
-    <div style="margin-top: 12px; text-align: left;">
-        <button onclick="resetMatch()" style="background: none; border: none; color: #00000; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; text-decoration: underline;">
-            Start New Game
+    <div style="margin-top: 12px; text-align: center;">
+        <button onclick="resetMatch()" style="background: none; border: none; color: #cc0000; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; text-decoration: underline;">
+            Clear Scores / Start New Game
         </button>
     </div>
 </div>
@@ -408,26 +400,25 @@
 
     function generatePreviewText() {
         const rawAwayName = document.getElementById('away-name').value;
-    
-    // Check if they haven't selected a team yet or left it on the default placeholder
-    const awayName = (rawAwayName && rawAwayName !== "OPPONENT") ? rawAwayName : "OPPONENT";
+        const awayName = (rawAwayName && rawAwayName !== "OPPONENT") ? rawAwayName.toUpperCase() : "OPPONENT";
         
         const homeTotal = (matchData.home.goals * 6) + matchData.home.behinds;
         const awayTotal = (matchData.away.goals * 6) + matchData.away.behinds;
 
+        const margin = homeTotal - awayTotal;
+        const absMargin = Math.abs(margin);
+
         let gameStatusText = "";
-        if (homeTotal > awayTotal) {
-            gameStatusText = "Lead";
-        } else if (awayTotal > homeTotal) {
-            gameStatusText = "Trailing";
+        if (margin > 0) {
+            gameStatusText = `Magpies lead by ${absMargin}`;
+        } else if (margin < 0) {
+            gameStatusText = `Magpies trail by ${absMargin}`;
         } else {
-            gameStatusText = "Scores level with";
+            gameStatusText = "Scores level";
         }
 
-        const outputString = `Busselton Magpies Update (${currentQuarter}):\n\n` + 
-                             `Busselton Magpies: ${matchData.home.goals}.${matchData.home.behinds} (${homeTotal})\n` +
-                             `${awayName}: ${matchData.away.goals}.${matchData.away.behinds} (${awayTotal})\n\n` +
-                             `Magpies ${gameStatusText} ${awayName}. Go Magpies!`;
+        const outputString = `${gameStatusText} (${currentQuarter})\n` + 
+                             `Busselton Magpies: ${matchData.home.goals}.${matchData.home.behinds} (${homeTotal}) - ${awayName}: ${matchData.away.goals}.${matchData.away.behinds} (${awayTotal})`;
 
         document.getElementById('preview-text').innerText = outputString;
         return outputString;
