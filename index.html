@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magpies Junior Footy Tracker</title>
-    <!-- App Icon Tags -->
+    <!-- App Icon & Branding Tags -->
     <link rel="icon" href="magpies-logo.png?v=2" type="image/png">
     <link rel="apple-touch-icon" href="magpies-logo.png?v=2">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Score Share">
+    
     <style>
         :root {
             --magpie-black: #1a1a1a;
@@ -46,7 +48,6 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
 
-        /* Header Setup with Logo */
         header {
             display: flex;
             flex-direction: column;
@@ -71,7 +72,6 @@
             font-weight: 900;
         }
 
-        /* Period / Quarter Selector */
         .section-label {
             font-size: 0.75rem;
             font-weight: bold;
@@ -105,7 +105,6 @@
             color: var(--magpie-white);
         }
 
-        /* Score Rows & Blocks */
         .team-block {
             border: 2px solid var(--magpie-black);
             border-radius: 10px;
@@ -114,9 +113,7 @@
             background: var(--magpie-white);
         }
 
-        .team-title-row {
-            margin-bottom: 8px;
-        }
+        .team-title-row { margin-bottom: 8px; }
 
         .team-name {
             font-size: 1.1rem;
@@ -135,20 +132,10 @@
             background: transparent;
             width: 100%;
             padding: 2px;
-            -webkit-user-select: text;
-            user-select: text;
         }
 
-        select.opponent-input {
-            color: var(--magpie-black);
-            cursor: pointer;
-        }
+        .opponent-input:focus { outline: none; }
 
-        .opponent-input:focus {
-            outline: none;
-        }
-
-        /* Inline Grid: Box -> Buttons -> Box -> Buttons -> Total */
         .inline-score-row {
             display: grid;
             grid-template-columns: 1fr 34px 1fr 34px 1fr;
@@ -168,17 +155,9 @@
             height: 60px;
         }
 
-        .score-box.total-box {
-            background: var(--magpie-black);
-        }
-
-        .score-box.total-box .score-label {
-            color: #cccccc;
-        }
-
-        .score-box.total-box .score-count {
-            color: var(--magpie-white);
-        }
+        .score-box.total-box { background: var(--magpie-black); }
+        .score-box.total-box .score-label { color: #cccccc; }
+        .score-box.total-box .score-count { color: var(--magpie-white); }
 
         .score-label {
             font-size: 0.65rem;
@@ -195,7 +174,6 @@
             line-height: 1.1;
         }
 
-        /* Interleaved Vertical Adjuster Stack */
         .control-buttons {
             display: flex;
             flex-direction: column;
@@ -217,17 +195,9 @@
             justify-content: center;
         }
 
-        .btn-plus {
-            background: var(--magpie-black);
-            color: var(--magpie-white);
-        }
+        .btn-plus { background: var(--magpie-black); color: var(--magpie-white); }
+        .btn-minus { background: var(--magpie-white); color: var(--magpie-black); }
 
-        .btn-minus {
-            background: var(--magpie-white);
-            color: var(--magpie-black);
-        }
-
-        /* Output & Share Field Details */
         .output-section {
             margin-top: 10px;
             border-top: 2px dashed var(--magpie-black);
@@ -244,8 +214,6 @@
             white-space: pre-line;
             color: #000000;
             margin-bottom: 8px;
-            -webkit-user-select: text;
-            user-select: text;
         }
 
         .btn-share {
@@ -259,11 +227,6 @@
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-share:active {
-            opacity: 0.8;
         }
     </style>
 </head>
@@ -275,7 +238,6 @@
         <h1>Magpies Score Tracker</h1>
     </header>
 
-    <!-- Match Settings Period Block -->
     <span class="section-label">Match Period</span>
     <div class="quarter-selector">
         <button class="q-btn active" id="q1-btn" onclick="setQuarter('1st Qtr')">Q1</button>
@@ -284,36 +246,25 @@
         <button class="q-btn" id="q4-btn" onclick="setQuarter('4th Qtr')">Q4</button>
     </div>
 
-    <!-- ROW 1: BUSSELTON MAGPIES -->
+    <!-- Home Team -->
     <div class="team-block">
-        <div class="team-title-row">
-            <div class="team-name">Busselton Magpies</div>
-        </div>
+        <div class="team-title-row"><div class="team-name">Busselton Magpies</div></div>
         <div class="inline-score-row">
-            <div class="score-box">
-                <span class="score-label">Goals</span>
-                <div class="score-count" id="home-goals">0</div>
-            </div>
+            <div class="score-box"><span class="score-label">Goals</span><div class="score-count" id="home-goals">0</div></div>
             <div class="control-buttons">
                 <button class="btn-calc btn-plus" onclick="updateScore('home', 'goals', 1)">+</button>
                 <button class="btn-calc btn-minus" onclick="updateScore('home', 'goals', -1)">-</button>
             </div>
-            <div class="score-box">
-                <span class="score-label">Points</span>
-                <div class="score-count" id="home-behinds">0</div>
-            </div>
+            <div class="score-box"><span class="score-label">Points</span><div class="score-count" id="home-behinds">0</div></div>
             <div class="control-buttons">
                 <button class="btn-calc btn-plus" onclick="updateScore('home', 'behinds', 1)">+</button>
                 <button class="btn-calc btn-minus" onclick="updateScore('home', 'behinds', -1)">-</button>
             </div>
-            <div class="score-box total-box">
-                <span class="score-label">Total</span>
-                <div class="score-count" id="home-total">0</div>
-            </div>
+            <div class="score-box total-box"><span class="score-label">Total</span><div class="score-count" id="home-total">0</div></div>
         </div>
     </div>
 
-    <!-- ROW 2: DROP-DOWN OPPONENT SELECTOR -->
+    <!-- Away Team -->
     <div class="team-block">
         <div class="team-title-row">
             <select class="opponent-input" id="away-name" onchange="generatePreviewText()">
@@ -332,73 +283,63 @@
             </select>
         </div>
         <div class="inline-score-row">
-            <div class="score-box">
-                <span class="score-label">Goals</span>
-                <div class="score-count" id="away-goals">0</div>
-            </div>
+            <div class="score-box"><span class="score-label">Goals</span><div class="score-count" id="away-goals">0</div></div>
             <div class="control-buttons">
                 <button class="btn-calc btn-plus" onclick="updateScore('away', 'goals', 1)">+</button>
                 <button class="btn-calc btn-minus" onclick="updateScore('away', 'goals', -1)">-</button>
             </div>
-            <div class="score-box">
-                <span class="score-label">Points</span>
-                <div class="score-count" id="away-behinds">0</div>
-            </div>
+            <div class="score-box"><span class="score-label">Points</span><div class="score-count" id="away-behinds">0</div></div>
             <div class="control-buttons">
                 <button class="btn-calc btn-plus" onclick="updateScore('away', 'behinds', 1)">+</button>
                 <button class="btn-calc btn-minus" onclick="updateScore('away', 'behinds', -1)">-</button>
             </div>
-            <div class="score-box total-box">
-                <span class="score-label">Total</span>
-                <div class="score-count" id="away-total">0</div>
-            </div>
+            <div class="score-box total-box"><span class="score-label">Total</span><div class="score-count" id="away-total">0</div></div>
         </div>
     </div>
 
-    <!-- OUTPUT BLOCKS -->
     <div class="output-section">
         <span class="section-label">Live Text Update Preview</span>
         <div class="preview-box" id="preview-text">...</div>
         <button class="btn-share" onclick="sendUpdate()">Share Text Update</button>
     </div>
 
-    <!-- CLEAR SCORE TRIGGER -->
     <div style="margin-top: 12px; text-align: center;">
-        <button onclick="resetMatch()" style="background: none; border: none; color: #cc0000; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; text-decoration: underline;">
+        <button onclick="resetMatch()" style="background: none; border: none; color: #cc0000; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; cursor: pointer; text-decoration: underline;">
             Clear Scores / Start New Game
         </button>
     </div>
 </div>
 
+<!-- Custom Modal -->
+<div id="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:1000;">
+    <div style="background:white; padding:20px; border-radius:12px; text-align:center; width:80%; max-width:300px; border: 3px solid #1a1a1a;">
+        <p style="font-weight:bold; margin-bottom:20px; font-size:1.1rem; color: #1a1a1a;">Clear all scores and start a fresh match?</p>
+        <div style="display:flex; gap:10px;">
+            <button onclick="confirmReset()" style="flex:1; padding:10px; background:#1a1a1a; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">YES</button>
+            <button onclick="closeModal()" style="flex:1; padding:10px; background:#cccccc; color:black; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">NO</button>
+        </div>
+    </div>
+</div>
+
 <script>
     let currentQuarter = "1st Qtr";
-    const matchData = {
-        home: { goals: 0, behinds: 0 },
-        away: { goals: 0, behinds: 0 }
-    };
+    const matchData = { home: { goals: 0, behinds: 0 }, away: { goals: 0, behinds: 0 } };
 
     function setQuarter(qName) {
         currentQuarter = qName;
         document.querySelectorAll('.q-btn').forEach(btn => btn.classList.remove('active'));
-        
         if (qName === '1st Qtr') document.getElementById('q1-btn').classList.add('active');
         if (qName === '2nd Qtr') document.getElementById('q2-btn').classList.add('active');
         if (qName === '3rd Qtr') document.getElementById('q3-btn').classList.add('active');
         if (qName === '4th Qtr') document.getElementById('q4-btn').classList.add('active');
-        
-        if (typeof originalSetQuarter === 'undefined') {
-            localStorage.setItem('magpiesQuarter', qName);
-        }
         generatePreviewText();
     }
 
     function updateScore(team, type, amount) {
         matchData[team][type] = Math.max(0, matchData[team][type] + amount);
         document.getElementById(`${team}-${type}`).innerText = matchData[team][type];
-        
         const total = (matchData[team].goals * 6) + matchData[team].behinds;
         document.getElementById(`${team}-total`).innerText = total;
-        
         localStorage.setItem('magpiesMatchData', JSON.stringify(matchData));
         generatePreviewText();
     }
@@ -406,70 +347,31 @@
     function generatePreviewText() {
         const rawAwayName = document.getElementById('away-name').value;
         const awayName = (rawAwayName && rawAwayName !== "OPPONENT") ? rawAwayName.toUpperCase() : "OPPONENT";
-        
         const homeTotal = (matchData.home.goals * 6) + matchData.home.behinds;
         const awayTotal = (matchData.away.goals * 6) + matchData.away.behinds;
-
         const margin = homeTotal - awayTotal;
         const absMargin = Math.abs(margin);
-
-        let gameStatusText = "";
-        if (margin > 0) {
-            gameStatusText = `Magpies lead by ${absMargin}`;
-        } else if (margin < 0) {
-            gameStatusText = `Magpies trail by ${absMargin}`;
-        } else {
-            gameStatusText = "Scores level";
-        }
-
-        const outputString = `${gameStatusText} (${currentQuarter})\n` + 
-                             `Busselton Magpies: ${matchData.home.goals}.${matchData.home.behinds} (${homeTotal}) - ${awayName}: ${matchData.away.goals}.${matchData.away.behinds} (${awayTotal})`;
-
+        let gameStatusText = margin > 0 ? `Magpies lead by ${absMargin}` : margin < 0 ? `Magpies trail by ${absMargin}` : "Scores level";
+        const outputString = `${gameStatusText} (${currentQuarter})\nBusselton Magpies: ${matchData.home.goals}.${matchData.home.behinds} (${homeTotal}) - ${awayName}: ${matchData.away.goals}.${matchData.away.behinds} (${awayTotal})`;
         document.getElementById('preview-text').innerText = outputString;
         return outputString;
     }
 
     function sendUpdate() {
         const message = generatePreviewText();
-
-        if (navigator.share) {
-            navigator.share({
-                title: 'Magpies Footy Update',
-                text: message
-            }).catch(err => console.log("Sharing cancelled or blocked:", err));
-        } else {
-            navigator.clipboard.writeText(message);
-            alert("Score copied to clipboard! Open your text messages or WhatsApp to paste and send.\n\n" + message);
-        }
+        if (navigator.share) { navigator.share({ title: 'Magpies Footy Update', text: message }); }
+        else { navigator.clipboard.writeText(message); alert("Score copied to clipboard!"); }
     }
 
-    function loadSavedData() {
-        const savedData = localStorage.getItem('magpiesMatchData');
-        const savedOpponent = localStorage.getItem('magpiesOpponent');
-        const savedQuarter = localStorage.getItem('magpiesQuarter');
-
-        if (savedData) {
-            const parsedData = JSON.parse(savedData);
-            matchData.home.goals = parsedData.home.goals;
-            matchData.home.behinds = parsedData.home.behinds;
-            updateUI('home', 'goals', matchData.home.goals);
-            updateUI('home', 'behinds', matchData.home.behinds);
-
-            matchData.away.goals = parsedData.away.goals;
-            matchData.away.behinds = parsedData.away.behinds;
-            updateUI('away', 'goals', matchData.away.goals);
-            updateUI('away', 'behinds', matchData.away.behinds);
-        }
-
-        if (savedOpponent) {
-            document.getElementById('away-name').value = savedOpponent;
-        }
-
-        if (savedQuarter) {
-            setQuarter(savedQuarter);
-        } else {
-            generatePreviewText();
-        }
+    function resetMatch() { document.getElementById('custom-modal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('custom-modal').style.display = 'none'; }
+    function confirmReset() {
+        localStorage.clear();
+        matchData.home = { goals: 0, behinds: 0 }; matchData.away = { goals: 0, behinds: 0 };
+        document.getElementById('away-name').value = "OPPONENT";
+        setQuarter('1st Qtr');
+        ['home', 'away'].forEach(t => { updateUI(t, 'goals', 0); updateUI(t, 'behinds', 0); });
+        closeModal();
     }
 
     function updateUI(team, type, value) {
@@ -478,37 +380,17 @@
         document.getElementById(`${team}-total`).innerText = total;
     }
 
-    document.getElementById('away-name').addEventListener('change', function() {
-        localStorage.setItem('magpiesOpponent', this.value);
-    });
-
-    const originalSetQuarter = setQuarter;
-    setQuarter = function(qName) {
-        originalSetQuarter(qName);
-        localStorage.setItem('magpiesQuarter', qName);
-    }
-
-    function resetMatch() {
-        if (confirm("Are you sure you want to clear all scores and start a fresh match?")) {
-            localStorage.removeItem('magpiesMatchData');
-            localStorage.removeItem('magpiesOpponent');
-            localStorage.removeItem('magpiesQuarter');
-            
-            matchData.home.goals = 0;
-            matchData.home.behinds = 0;
-            matchData.away.goals = 0;
-            matchData.away.behinds = 0;
-            
-            document.getElementById('away-name').value = "OPPONENT";
-            setQuarter('1st Qtr');
-            
-            updateUI('home', 'goals', 0);
-            updateUI('home', 'behinds', 0);
-            updateUI('away', 'goals', 0);
-            updateUI('away', 'behinds', 0);
+    document.getElementById('away-name').addEventListener('change', function() { localStorage.setItem('magpiesOpponent', this.value); });
+    function loadSavedData() {
+        const savedData = JSON.parse(localStorage.getItem('magpiesMatchData'));
+        if (savedData) {
+            matchData.home = savedData.home; matchData.away = savedData.away;
+            updateUI('home', 'goals', matchData.home.goals); updateUI('home', 'behinds', matchData.home.behinds);
+            updateUI('away', 'goals', matchData.away.goals); updateUI('away', 'behinds', matchData.away.behinds);
         }
+        if (localStorage.getItem('magpiesOpponent')) document.getElementById('away-name').value = localStorage.getItem('magpiesOpponent');
+        setQuarter(localStorage.getItem('magpiesQuarter') || '1st Qtr');
     }
-
     loadSavedData();
 </script>
 </body>
