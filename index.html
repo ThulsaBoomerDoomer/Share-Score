@@ -11,39 +11,31 @@
     <meta name="apple-mobile-web-app-title" content="Score Share">
     
     <style>
-        :root {
-            --magpie-black: #1a1a1a;
-            --magpie-white: #ffffff;
-        }
-
+        :root { --magpie-black: #1a1a1a; --magpie-white: #ffffff; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; -webkit-user-select: none; user-select: none; }
-
         body { background-color: #e0e0e0; padding: 10px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-
         .app-container { width: 100%; max-width: 460px; background: var(--magpie-white); border: 3px solid var(--magpie-black); border-radius: 16px; padding: 15px; }
 
         header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px; border-bottom: 3px double var(--magpie-black); padding-bottom: 10px; }
         header img { width: 50px; }
         header h1 { font-size: 1.2rem; text-transform: uppercase; }
 
-        .team-block { border: 2px solid var(--magpie-black); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
-        .team-name { font-size: 1.2rem; font-weight: 900; margin-bottom: 10px; }
-        .opponent-input { width: 100%; font-size: 1.2rem; font-weight: 900; border: none; border-bottom: 2px dashed #000; background: transparent; padding: 5px; }
+        .team-block { border: 2px solid var(--magpie-black); border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+        .team-name { font-size: 1.1rem; font-weight: 900; margin-bottom: 8px; }
+        .opponent-input { width: 100%; font-size: 1.1rem; font-weight: 900; border: none; border-bottom: 2px dashed #000; background: transparent; padding: 2px 0 8px 0; margin-bottom: 12px; }
 
-        .inline-score-row { display: grid; grid-template-columns: 1fr 60px 1fr 60px 1fr; align-items: center; gap: 8px; }
-        .score-box { border: 2px solid #000; border-radius: 8px; padding: 10px; text-align: center; }
-        .score-count { font-size: 2rem; font-weight: 900; }
+        .inline-score-row { display: grid; grid-template-columns: 1fr 50px 1fr 50px 1fr; align-items: center; gap: 6px; height: 60px; }
+        .score-box { border: 2px solid #000; border-radius: 8px; height: 60px; display: flex; align-items: center; justify-content: center; }
+        .score-count { font-size: 1.5rem; font-weight: 900; }
         
-        /* BIGGER BUTTONS */
-        .control-buttons { display: flex; flex-direction: column; gap: 5px; }
-        .btn-calc { border: 2px solid #000; width: 55px; height: 55px; border-radius: 10px; font-size: 1.5rem; font-weight: bold; cursor: pointer; }
-        .btn-plus { background: #000; color: #fff; }
-        .btn-minus { background: #fff; color: #000; }
+        .control-buttons { display: flex; flex-direction: column; gap: 2px; height: 60px; }
+        .btn-calc { border: 2px solid #000; width: 50px; border-radius: 4px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .btn-plus { height: 35px; background: #000; color: #fff; font-size: 1.2rem; }
+        .btn-minus { height: 23px; background: #fff; color: #000; font-size: 0.9rem; }
 
-        .btn-share { width: 100%; background: var(--magpie-black); color: white; padding: 15px; border-radius: 10px; font-weight: bold; font-size: 1.1rem; }
-
-        /* AD SPACE */
-        .ad-block { width: 100%; height: 100px; background: #eee; border: 2px dashed #999; margin-top: 20px; display: flex; align-items: center; justify-content: center; color: #666; font-style: italic; border-radius: 8px; }
+        .preview-box { background: #f4f4f4; border: 2px solid #000; border-radius: 8px; padding: 10px; font-family: monospace; font-size: 0.85rem; margin-bottom: 10px; min-height: 40px; }
+        .btn-share { width: 100%; background: var(--magpie-black); color: white; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 1rem; margin-bottom: 10px; }
+        .ad-block { width: 100%; height: 80px; background: #eee; border: 2px dashed #999; display: flex; align-items: center; justify-content: center; color: #666; font-style: italic; border-radius: 8px; }
     </style>
 </head>
 <body>
@@ -51,10 +43,9 @@
 <div class="app-container">
     <header>
         <img src="magpies-logo.png?v=2" alt="Logo">
-        <h1>Magpies Tracker</h1>
+        <h1>Magpies Score Share</h1>
     </header>
 
-    <!-- Home Team -->
     <div class="team-block">
         <div class="team-name">Busselton Magpies</div>
         <div class="inline-score-row">
@@ -72,14 +63,11 @@
         </div>
     </div>
 
-    <!-- Away Team -->
     <div class="team-block">
-        <select class="opponent-input" id="away-name">
+        <select class="opponent-input" id="away-name" onchange="generatePreviewText()">
             <option value="OPPONENT">-- SELECT OPPONENT --</option>
             <option value="Augusta">AUGUSTA</option>
             <option value="Bunbury">BUNBURY</option>
-            <option value="Carey Park">CAREY PARK</option>
-            <option value="Donnybrook">DONNYBROOK</option>
         </select>
         <div class="inline-score-row">
             <div class="score-box"><div class="score-count" id="away-goals">0</div></div>
@@ -96,9 +84,8 @@
         </div>
     </div>
 
+    <div class="preview-box" id="preview-text">...</div>
     <button class="btn-share" onclick="sendUpdate()">Share Score</button>
-
-    <!-- AD SPACE -->
     <div class="ad-block">Sponsor Ad Space</div>
 </div>
 
@@ -109,9 +96,18 @@
         document.getElementById(`${team}-${type}`).innerText = matchData[team][type];
         const total = (matchData[team].goals * 6) + matchData[team].behinds;
         document.getElementById(`${team}-total`).innerText = total;
+        generatePreviewText();
+    }
+    function generatePreviewText() {
+        const away = document.getElementById('away-name').value;
+        const hT = (matchData.home.goals * 6) + matchData.home.behinds;
+        const aT = (matchData.away.goals * 6) + matchData.away.behinds;
+        const margin = hT - aT;
+        let status = margin > 0 ? `Magpies lead by ${margin}` : margin < 0 ? `Magpies trail by ${Math.abs(margin)}` : "Scores level";
+        document.getElementById('preview-text').innerText = `${status}\nMagpies ${matchData.home.goals}.${matchData.home.behinds}(${hT}) vs ${away} ${matchData.away.goals}.${matchData.away.behinds}(${aT})`;
     }
     function sendUpdate() {
-        const msg = `Magpies: ${matchData.home.goals}.${matchData.home.behinds} (${(matchData.home.goals * 6) + matchData.home.behinds}) vs Opponent: ${matchData.away.goals}.${matchData.away.behinds} (${(matchData.away.goals * 6) + matchData.away.behinds})`;
+        const msg = document.getElementById('preview-text').innerText;
         if (navigator.share) navigator.share({text: msg});
         else { navigator.clipboard.writeText(msg); alert("Copied!"); }
     }
