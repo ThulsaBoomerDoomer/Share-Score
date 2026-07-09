@@ -13,28 +13,32 @@
     <style>
         :root { --magpie-black: #1a1a1a; --magpie-white: #ffffff; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; -webkit-user-select: none; user-select: none; }
-        body { background-color: #e0e0e0; padding: 10px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .app-container { width: 100%; max-width: 460px; background: var(--magpie-white); border: 3px solid var(--magpie-black); border-radius: 16px; padding: 15px; }
+        
+        /* Updated Body: Removes tight padding and lets the app flow */
+        body { background-color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 10px; }
 
-        header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px; border-bottom: 3px double var(--magpie-black); padding-bottom: 10px; }
-        header img { width: 50px; }
-        header h1 { font-size: 1.2rem; text-transform: uppercase; }
+        /* Updated Container: Now scales to 95% width, maxing out at 500px */
+        .app-container { width: 95%; max-width: 500px; background: var(--magpie-white); border: 3px solid var(--magpie-black); border-radius: 16px; padding: 4%; }
 
-        .team-block { border: 2px solid var(--magpie-black); border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+        header { display: flex; align-items: center; justify-content: center; gap: 4%; margin-bottom: 4%; border-bottom: 3px double var(--magpie-black); padding-bottom: 10px; }
+        header img { width: 12%; min-width: 40px; }
+        header h1 { font-size: 5vw; max-font-size: 1.2rem; text-transform: uppercase; }
+
+        .team-block { border: 2px solid var(--magpie-black); border-radius: 12px; padding: 4%; margin-bottom: 4%; }
         .team-name { font-size: 1.1rem; font-weight: 900; margin-bottom: 8px; }
         .opponent-input { width: 100%; font-size: 1.1rem; font-weight: 900; border: none; border-bottom: 2px dashed #000; background: transparent; padding: 2px 0 8px 0; margin-bottom: 12px; }
 
-        .inline-score-row { display: grid; grid-template-columns: 1fr 50px 1fr 50px 1fr; align-items: center; gap: 6px; height: 60px; }
+        .inline-score-row { display: grid; grid-template-columns: 1fr 50px 1fr 50px 1fr; align-items: center; gap: 2%; height: 60px; }
         .score-box { border: 2px solid #000; border-radius: 8px; height: 60px; display: flex; align-items: center; justify-content: center; }
         .score-count { font-size: 1.5rem; font-weight: 900; }
         
-        .control-buttons { display: flex; flex-direction: column; gap: 2px; height: 60px; }
-        .btn-calc { border: 2px solid #000; width: 50px; border-radius: 4px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .btn-plus { height: 35px; background: #000; color: #fff; font-size: 1.2rem; }
-        .btn-minus { height: 23px; background: #fff; color: #000; font-size: 0.9rem; }
+        .control-buttons { display: flex; flex-direction: column; gap: 0px; height: 60px; }
+        .btn-calc { border: 1px solid #000; width: 100%; border-radius: 0; font-size: 1rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .btn-plus { height: 36px; background: #000; color: #fff; border-radius: 4px 4px 0 0; }
+        .btn-minus { height: 24px; background: #fff; color: #000; border-radius: 0 0 4px 4px; }
 
-        .preview-box { background: #f4f4f4; border: 2px solid #000; border-radius: 8px; padding: 10px; font-family: monospace; font-size: 0.85rem; margin-bottom: 10px; min-height: 40px; }
-        .btn-share { width: 100%; background: var(--magpie-black); color: white; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 1rem; margin-bottom: 10px; }
+        .preview-box { background: #f4f4f4; border: 2px solid #000; border-radius: 8px; padding: 3%; font-family: monospace; font-size: 0.85rem; margin-bottom: 10px; min-height: 40px; }
+        .btn-share { width: 100%; background: var(--magpie-black); color: white; padding: 3%; border-radius: 8px; font-weight: bold; font-size: 1rem; margin-bottom: 10px; }
         .ad-block { width: 100%; height: 80px; background: #eee; border: 2px dashed #999; display: flex; align-items: center; justify-content: center; color: #666; font-style: italic; border-radius: 8px; }
     </style>
 </head>
@@ -43,7 +47,7 @@
 <div class="app-container">
     <header>
         <img src="magpies-logo.png?v=2" alt="Logo">
-        <h1>Magpies Score Share</h1>
+        <h1>Magpies Tracker</h1>
     </header>
 
     <div class="team-block">
