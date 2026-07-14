@@ -14,10 +14,7 @@
         :root { --magpie-black: #1a1a1a; --magpie-white: #ffffff; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; -webkit-user-select: none; user-select: none; }
         
-        /* Updated Body: Removed padding and margin to allow edge-to-edge */
         body { background-color: var(--magpie-white); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0; margin: 0; }
-
-        /* Updated Container: Full width, no max-width limits */
         .app-container { width: 100vw; min-height: 100vh; background: var(--magpie-white); padding: 15px; }
 
         header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; border-bottom: 3px double var(--magpie-black); padding-bottom: 10px; }
@@ -72,6 +69,15 @@
             <option value="OPPONENT">-- SELECT OPPONENT --</option>
             <option value="Augusta">AUGUSTA</option>
             <option value="Bunbury">BUNBURY</option>
+            <option value="Carey Park">CAREY PARK</option>
+            <option value="Collie Lions">COLLIE LIONS</option>
+            <option value="Donnybrook">DONNYBROOK</option>
+            <option value="Eaton Boomers">EATON BOOMERS</option>
+            <option value="HBL">HBL</option>
+            <option value="Harvey Bulls">HARVEY BULLS</option>
+            <option value="Margaret River">MARGARET RIVER</option>
+            <option value="Peninsula Bombers">PENINSULA BOMBERS</option>
+            <option value="South Bunbury">SOUTH BUNBURY</option>
         </select>
         <div class="inline-score-row">
             <div class="score-box"><div class="score-count" id="away-goals">0</div></div>
